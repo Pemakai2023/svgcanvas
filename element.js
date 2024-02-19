@@ -1,5 +1,5 @@
-import Context from './context';
-import imageUtils from './image';
+import Context from './context.js';
+import imageUtils from './image.js';
 
 function SVGCanvasElement(options) {
 
