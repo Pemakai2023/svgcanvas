@@ -1,5 +1,5 @@
-import Context from './context';
-import Element from './element';
+import Context from './context.js';
+import Element from './element.js';
 
 export {Context};
 export {Element};
