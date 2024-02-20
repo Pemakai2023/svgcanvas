@@ -4,8 +4,14 @@ Draw on SVG using Canvas's 2D Context API. A maintained fork of
 [gliffy's canvas2svg](https://github.com/gliffy/canvas2svg).
 
 ## Demo
-
+- origin
 https://zenozeng.github.io/svgcanvas/test/
+
+- test
+[Test display](https://pemakai2023.github.io/svgcanvas/test/)
+
+- Render test
+[test info/perf](https://pemakai2023.github.io/svgcanvas/test/rendering.test.html)
 
 ## How it works
 
