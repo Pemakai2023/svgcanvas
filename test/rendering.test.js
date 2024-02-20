@@ -50,7 +50,11 @@ const config = {
     pixelDensity: 3 // for 200% and 150%
 }
 
+let pre = document.createElement("pre");
+document.body.appendChild(pre)
+
 class RenderingTester {
+  
     constructor(name, fn) {
         this.name = name;
         this.fn = fn;
@@ -78,8 +82,6 @@ class RenderingTester {
             }
             svgImage.src = svg;
         })
-        const pre = document.createElement("pre");
-        document.body.appendChild(pre)
         const svgPixels = this.getPixels(svgImage);
         const canvasPixels = this.getPixels(canvas);
         const diffPixels = this.diffPixels(svgPixels, canvasPixels);
@@ -88,8 +90,9 @@ class RenderingTester {
         const canvasPixelsCount = this.countPixels(canvasPixels)
         const count = Math.max(svgPixelsCount, canvasPixelsCount);
         const diffPixelsCount = this.countPixels(removeThinLinesPixels);
+        
         console.log(JSON.stringify({ fn: this.name, count, diffCount: diffPixelsCount, svgPixelsCount, canvasPixelsCount },null,2))
-        pre.textContent += this.name+": "+JSON.stringify({ fn: this.name, count, diffCount: diffPixelsCount, svgPixelsCount, canvasPixelsCount },null,2)
+        pre.textContent += this.name+": "+JSON.stringify({ fn: this.name, count, diffCount: diffPixelsCount, svgPixelsCount, canvasPixelsCount },null,2) +'\n'
         
         if (count === 0 && diffPixelsCount === 0) {
             return 0
@@ -97,6 +100,7 @@ class RenderingTester {
         const diffRate = diffPixelsCount / count;
         return diffRate;
     }
+    
 
     getPixels(image) {
         const canvas = document.createElement('canvas');
@@ -192,7 +196,8 @@ class RenderingTester {
         return imgData;
     }
 }
-function describe(str, cb) {
+function describe (str, cb) {
+  pre.textContent += str  +': \n\n'
   cb()
 }
 
@@ -204,9 +209,16 @@ describe('RenderTest', () => {
     for (let fn of Object.keys(tests)) {
         it(`should render same results for ${fn}`, async () => {
             const tester = new RenderingTester(fn, tests[fn]);
+                     
             const diffRate = await tester.test();
-            //expect(diffRate).to.lessThan(0.05);
-            expect(diffRate).to.lessThan(1.0);
+            pre.textContent += 'diffRate: ' + diffRate
+            if(diffRate >= 0.05 ) {
+              pre.textContent += ' expected < 0.05 \n\n'
+            }
+            pre.textContent += '\n\n'
+            
+            expect(diffRate).to.lessThan(0.05);
+            
         })
     }
 })
