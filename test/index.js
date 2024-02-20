@@ -51,7 +51,7 @@ for (let fn of tests) {
     const container = document.createElement('div');
     container.className = 'example';
     container.id = 'example-' + name;
-    container.innerHTML = `<h2>${name}</h2><div class="canvas"></div><div class="svg"></div>`
+    container.innerHTML = `<h2>${name}</h2><div class="canvas"></div><br/><br/><div class="svg"></div>`
     // Canvas
     const canvas = document.createElement('canvas');
     container.querySelector('.canvas').appendChild(canvas);
