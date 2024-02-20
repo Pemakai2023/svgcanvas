@@ -7,6 +7,12 @@ Draw on SVG using Canvas's 2D Context API. A maintained fork of
 - origin
 https://zenozeng.github.io/svgcanvas/test/
 
+- test
+[Test display](https://pemakai2023.github.io/svgcanvas/test/)
+
+- Render test
+[test info/perf](https://pemakai2023.github.io/svgcanvas/test/rendering.test.html)
+
 ## How it works
 
 We create a mock 2d canvas context. Use the canvas context like you would on a
